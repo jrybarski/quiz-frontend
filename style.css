@@ -1,0 +1,20 @@
+body {
+  background-color: #313e51;
+  margin: 0 auto;
+}
+
+.container {
+  margin: 0 auto;
+
+  width: 375px;
+  background-image: url("/assets/images/pattern-background-mobile-dark.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.quiz-option {
+  display: flex;
+  background-color: #3c4c67;
+  margin-bottom: 15px;
+}
