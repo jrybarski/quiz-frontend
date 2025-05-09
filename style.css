@@ -12,9 +12,25 @@ body {
 .container {
   margin: 0 auto;
   width: 375px;
+  height: 800px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+.container h3 {
+  color: white;
+  opacity: 0.5;
+  font-size: 14px;
+  font-weight: 200;
+  font-style: italic;
+}
+.container h2 {
+  color: white;
+  font-size: 48px;
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
 }
 
 .quiz-option {

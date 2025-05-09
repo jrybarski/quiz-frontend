@@ -52,9 +52,9 @@ function generateStart(quizzes) {
   const title1 = document.createElement("h1");
   title1.innerHTML = "Welcome to the";
   const title2 = document.createElement("h2");
-  title2.innerHTML = "Frontend Quiz";
+  title2.innerHTML = "Frontend Quiz!";
   const title3 = document.createElement("h3");
-  title3.innerHTML = "Pick a subject to get started";
+  title3.innerHTML = "Pick a subject to get started.";
 
   container.appendChild(title1);
   container.appendChild(title2);
