@@ -68,7 +68,7 @@ function generateStart(quizzes) {
     answerImage.src = quiz.icon;
     answerImage.alt = `${quiz.title} icon`;
 
-    const answerText = document.createElement("h1");
+    const answerText = document.createElement("h4");
     answerText.innerHTML = quiz.title;
 
     answer.appendChild(answerImage);
