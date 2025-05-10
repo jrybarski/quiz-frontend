@@ -16,16 +16,16 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  padding: 20px;
+  padding: 18px;
 }
 
 .container h3 {
   color: white;
-  opacity: 0.5;
-  font-size: 14px;
+  opacity: 0.55;
+  font-size: 15px;
   font-weight: 200;
   font-style: italic;
-  margin-bottom: 10%;
+  margin-bottom: 11%;
 }
 .container h2 {
   color: white;
