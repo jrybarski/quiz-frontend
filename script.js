@@ -1,5 +1,6 @@
 const containerWelcome = document.querySelector(".container-welcome");
 const container = document.querySelector(".container");
+const containerQuiz = document.querySelector(".container-quiz");
 const themeToggle = document.getElementById("theme-toggle");
 const body = document.body;
 const sunIcon = document.querySelector(".icon.sun");
@@ -83,37 +84,76 @@ function generateStart(quizzes) {
   const jsElement = document.querySelector(".option-3");
   const accessElement = document.querySelector(".option-4");
 
-  htmlElement.addEventListener("click", () => getQuizzStarted("html"));
-  cssElement.addEventListener("click", () => getQuizzStarted("css"));
-  jsElement.addEventListener("click", () => getQuizzStarted("js"));
-  accessElement.addEventListener("click", () => getQuizzStarted("access"));
+  if (htmlElement) {
+    htmlElement.addEventListener("click", () =>
+      getQuizzStarted("html", quizzes)
+    );
+  } else {
+    console.error("Element .option-1 nie znaleziony.");
+  }
+  if (cssElement) {
+    cssElement.addEventListener("click", () => getQuizzStarted("css", quizzes));
+  } else {
+    console.error("Element .option-2 nie znaleziony.");
+  }
+  if (jsElement) {
+    jsElement.addEventListener("click", () => getQuizzStarted("js", quizzes));
+  } else {
+    console.error("Element .option-3 nie znaleziony.");
+  }
+  if (accessElement) {
+    accessElement.addEventListener("click", () =>
+      getQuizzStarted("access", quizzes)
+    );
+  } else {
+    console.error("Element .option-4 nie znaleziony.");
+  }
 }
 
-loadQuestions();
-
-function getQuizzStarted(quiz) {
+function getQuizzStarted(quiz, quizzes) {
   containerWelcome.style.visibility = "hidden";
   containerWelcome.style.height = "1px";
   nameOfQuiz.style.visibility = "visible";
+
+  let questionCount = 1;
 
   const nameOfQuizImg = document.createElement("img");
   nameOfQuizImg.classList.add("quizimg");
   const nameOfQuizText = document.createElement("h1");
   nameOfQuiz.appendChild(nameOfQuizImg);
   nameOfQuiz.appendChild(nameOfQuizText);
+  const questionCountElement = document.createElement("h1");
+  containerQuiz.appendChild(questionCountElement);
 
+  let selectedQuiz;
   if (quiz === "html") {
+    selectedQuiz = quizzes.find((q) => q.title.toLowerCase() === "html");
     nameOfQuizImg.src = "./assets/images/icon-html.svg";
     nameOfQuizImg.style.backgroundColor = "rgb(248, 227, 187)";
     nameOfQuizText.innerHTML = "HTML";
   } else if (quiz === "css") {
+    selectedQuiz = quizzes.find((q) => q.title.toLowerCase() === "css");
     nameOfQuizImg.src = "./assets/images/icon-css.svg";
     nameOfQuizText.innerHTML = "CSS";
   } else if (quiz === "js") {
+    selectedQuiz = quizzes.find((q) => q.title.toLowerCase() === "javascript");
     nameOfQuizImg.src = "./assets/images/icon-js.svg";
     nameOfQuizText.innerHTML = "JavaScript";
   } else if (quiz === "access") {
+    selectedQuiz = quizzes.find(
+      (q) => q.title.toLowerCase() === "accessibility"
+    );
     nameOfQuizImg.src = "./assets/images/icon-accessibility.svg";
     nameOfQuizText.innerHTML = "Accessibility";
   }
+
+  if (selectedQuiz && selectedQuiz.questions) {
+    const questionCountLength = selectedQuiz.questions.length;
+    questionCountElement.innerHTML = `Question ${questionCount} of ${questionCountLength}`;
+  } else {
+    console.error(`Nie znaleziono quizu dla tematu: ${quiz} lub brak pytań.`);
+    questionCountElement.innerHTML = "Błąd: Brak pytań";
+  }
 }
+
+loadQuestions();
