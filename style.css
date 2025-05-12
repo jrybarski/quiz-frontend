@@ -63,6 +63,12 @@ body {
   margin-left: 3%;
   border-radius: 8px;
 }
+.quizimg {
+  width: 32px;
+  height: 32px;
+  padding: 5px;
+  border-radius: 8px;
+}
 .option-1 img {
   background-color: rgb(248, 227, 187);
 }
@@ -146,4 +152,20 @@ input:checked + .slider {
 
 input:checked + .slider:before {
   transform: translateX(25px);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nameOfQuiz {
+  display: flex;
+  visibility: hidden;
+  align-items: center;
+}
+.nameOfQuiz h1 {
+  font-size: 24px;
+  margin-left: 15%;
 }

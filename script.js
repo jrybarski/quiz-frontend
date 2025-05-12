@@ -1,8 +1,10 @@
+const containerWelcome = document.querySelector(".container-welcome");
 const container = document.querySelector(".container");
 const themeToggle = document.getElementById("theme-toggle");
 const body = document.body;
 const sunIcon = document.querySelector(".icon.sun");
 const moonIcon = document.querySelector(".icon.moon");
+const nameOfQuiz = document.querySelector(".nameOfQuiz");
 
 async function loadQuestions() {
   try {
@@ -25,7 +27,7 @@ function updateIcons(isDarkMode) {
   if (isDarkMode) {
     sunIcon.src = "assets/images/icon-sun-dark.svg";
     moonIcon.src = "assets/images/icon-moon-dark.svg";
-    container.style.backgroundImage = container.style.backgroundImage =
+    container.style.backgroundImage =
       "url('/assets/images/pattern-background-mobile-dark.svg')";
   } else {
     sunIcon.src = "assets/images/icon-sun-light.svg";
@@ -56,9 +58,9 @@ function generateStart(quizzes) {
   const title3 = document.createElement("h3");
   title3.innerHTML = "Pick a subject to get started.";
 
-  container.appendChild(title1);
-  container.appendChild(title2);
-  container.appendChild(title3);
+  containerWelcome.appendChild(title1);
+  containerWelcome.appendChild(title2);
+  containerWelcome.appendChild(title3);
 
   quizzes.forEach((quiz, index) => {
     const answer = document.createElement("div");
@@ -73,8 +75,45 @@ function generateStart(quizzes) {
 
     answer.appendChild(answerImage);
     answer.appendChild(answerText);
-    container.appendChild(answer);
+    containerWelcome.appendChild(answer);
   });
+
+  const htmlElement = document.querySelector(".option-1");
+  const cssElement = document.querySelector(".option-2");
+  const jsElement = document.querySelector(".option-3");
+  const accessElement = document.querySelector(".option-4");
+
+  htmlElement.addEventListener("click", () => getQuizzStarted("html"));
+  cssElement.addEventListener("click", () => getQuizzStarted("css"));
+  jsElement.addEventListener("click", () => getQuizzStarted("js"));
+  accessElement.addEventListener("click", () => getQuizzStarted("access"));
 }
 
 loadQuestions();
+
+function getQuizzStarted(quiz) {
+  containerWelcome.style.visibility = "hidden";
+  containerWelcome.style.height = "1px";
+  nameOfQuiz.style.visibility = "visible";
+
+  const nameOfQuizImg = document.createElement("img");
+  nameOfQuizImg.classList.add("quizimg");
+  const nameOfQuizText = document.createElement("h1");
+  nameOfQuiz.appendChild(nameOfQuizImg);
+  nameOfQuiz.appendChild(nameOfQuizText);
+
+  if (quiz === "html") {
+    nameOfQuizImg.src = "./assets/images/icon-html.svg";
+    nameOfQuizImg.style.backgroundColor = "rgb(248, 227, 187)";
+    nameOfQuizText.innerHTML = "HTML";
+  } else if (quiz === "css") {
+    nameOfQuizImg.src = "./assets/images/icon-css.svg";
+    nameOfQuizText.innerHTML = "CSS";
+  } else if (quiz === "js") {
+    nameOfQuizImg.src = "./assets/images/icon-js.svg";
+    nameOfQuizText.innerHTML = "JavaScript";
+  } else if (quiz === "access") {
+    nameOfQuizImg.src = "./assets/images/icon-accessibility.svg";
+    nameOfQuizText.innerHTML = "Accessibility";
+  }
+}
