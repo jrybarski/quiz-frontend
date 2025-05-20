@@ -131,20 +131,27 @@ function getQuizzStarted(quiz, quizzes) {
     nameOfQuizImg.src = "./assets/images/icon-html.svg";
     nameOfQuizImg.style.backgroundColor = "rgb(248, 227, 187)";
     nameOfQuizText.innerHTML = "HTML";
+    loadAnswers(selectedQuiz, questionCount);
   } else if (quiz === "css") {
     selectedQuiz = quizzes.find((q) => q.title.toLowerCase() === "css");
     nameOfQuizImg.src = "./assets/images/icon-css.svg";
+    nameOfQuizImg.style.backgroundColor = "rgb(185, 247, 185)";
     nameOfQuizText.innerHTML = "CSS";
+    loadAnswers(selectedQuiz, questionCount);
   } else if (quiz === "js") {
     selectedQuiz = quizzes.find((q) => q.title.toLowerCase() === "javascript");
     nameOfQuizImg.src = "./assets/images/icon-js.svg";
+    nameOfQuizImg.style.backgroundColor = "rgb(186, 186, 248)";
     nameOfQuizText.innerHTML = "JavaScript";
+    loadAnswers(selectedQuiz, questionCount);
   } else if (quiz === "access") {
     selectedQuiz = quizzes.find(
       (q) => q.title.toLowerCase() === "accessibility"
     );
     nameOfQuizImg.src = "./assets/images/icon-accessibility.svg";
+    nameOfQuizImg.style.backgroundColor = "rgb(252, 185, 252)";
     nameOfQuizText.innerHTML = "Accessibility";
+    loadAnswers(selectedQuiz, questionCount);
   }
 
   if (selectedQuiz && selectedQuiz.questions) {
@@ -154,6 +161,25 @@ function getQuizzStarted(quiz, quizzes) {
     console.error(`Nie znaleziono quizu dla tematu: ${quiz} lub brak pytań.`);
     questionCountElement.innerHTML = "Błąd: Brak pytań";
   }
+}
+
+function loadAnswers(selectedQuiz, questionCount) {
+  const lettersArray = ["A", "B", "C", "D"];
+  const answearsQuiz = selectedQuiz.questions[questionCount - 1].options;
+  answearsQuiz.forEach((elem, index) => {
+    const answear = document.createElement("div");
+    answear.classList.add("answear-row");
+
+    const questionOptionLetter = document.createElement("h1");
+
+    const questionOption = document.createElement("h2");
+
+    questionOptionLetter.innerHTML = lettersArray[index];
+    questionOption.innerHTML = elem;
+    answear.appendChild(questionOptionLetter);
+    answear.appendChild(questionOption);
+    containerQuiz.appendChild(answear);
+  });
 }
 
 loadQuestions();
