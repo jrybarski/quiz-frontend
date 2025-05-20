@@ -166,13 +166,20 @@ function getQuizzStarted(quiz, quizzes) {
 function loadAnswers(selectedQuiz, questionCount) {
   const lettersArray = ["A", "B", "C", "D"];
   const answearsQuiz = selectedQuiz.questions[questionCount - 1].options;
+
+  const title = selectedQuiz.questions[questionCount - 1].question;
+  const questionTitle = document.createElement("div");
+  questionTitle.innerHTML = title;
+  questionTitle.classList.add("question-title");
+  containerQuiz.appendChild(questionTitle);
+
   answearsQuiz.forEach((elem, index) => {
     const answear = document.createElement("div");
     answear.classList.add("answear-row");
 
-    const questionOptionLetter = document.createElement("h1");
+    const questionOptionLetter = document.createElement("h2");
 
-    const questionOption = document.createElement("h2");
+    const questionOption = document.createElement("h3");
 
     questionOptionLetter.innerHTML = lettersArray[index];
     questionOption.innerHTML = elem;
